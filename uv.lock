@@ -1057,7 +1057,7 @@ wheels = [
 
 [[package]]
 name = "webquest"
-version = "0.4.0"
+version = "0.4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -1067,9 +1067,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ea/70/1613eab5cc595979ee2078e9c8dd4dde1f39338c34678e7248ae93dcc4a6/webquest-0.4.0.tar.gz", hash = "sha256:e2c87079e329faebc6d8c9a0417af10a6c7f243eb189b35c4259b94106d078d4", size = 6925, upload-time = "2025-11-16T21:25:24.149Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6f/b4/3bfce8fd6e67fac0084278d03f30faf09fd032979b667824246c04759500/webquest-0.4.1.tar.gz", hash = "sha256:3cc03dbe3fadde4210f1ca14b01878f5d0b88f34f99568bae67d786d9b9870ad", size = 7069, upload-time = "2025-11-17T18:32:38.54Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/18/fc/8662878e095423eeed803a1877ad69a83367e568ced55aaec16cc2ecd8ca/webquest-0.4.0-py3-none-any.whl", hash = "sha256:367a3918b65cb8abe9abfe0a9cadc10d99b0f5708fa23422cb71cfe6ae5c0967", size = 16207, upload-time = "2025-11-16T21:25:22.884Z" },
+    { url = "https://files.pythonhosted.org/packages/20/29/3ff0854730bfe6786d5071e43b8201e89abbdd247d0244d533328287c296/webquest-0.4.1-py3-none-any.whl", hash = "sha256:b7a66d68b4cc1f778220fe061fd3c8ee24f264be994e6aa965b5d24553c6f718", size = 16351, upload-time = "2025-11-17T18:32:37.735Z" },
 ]
 
 [[package]]
@@ -1092,7 +1092,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "mcp", extras = ["cli"], specifier = ">=1.21.1" },
-    { name = "webquest", specifier = ">=0.4" },
+    { name = "webquest", specifier = ">=0.4.1" },
 ]
 
 [package.metadata.requires-dev]

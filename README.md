@@ -2,7 +2,7 @@
 
 WebQuest MCP is a Model Context Protocol (MCP) server that exposes powerful web search and scraping tools to AI agents and MCP-compatible clients.
 
-**Available scrapers**
+**Scrapers**
 
 - **Any Article:** Extracts readable content from arbitrary web articles.
 - **DuckDuckGo Search:** General web search using DuckDuckGo.
