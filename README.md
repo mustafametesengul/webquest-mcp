@@ -10,9 +10,9 @@ WebQuest MCP is a Model Context Protocol (MCP) server that exposes powerful web 
 - **YouTube Search:** Search YouTube videos, channels, posts, and shorts.
 - **YouTube Transcript:** Fetch transcripts for YouTube videos.
 
-**Runners**
+**Browsers**
 
-- **Hyperbrowser:** Executes scraping tasks using Hyperbrowser.
+- **Hyperbrowser:** A cloud-based browser service for running Playwright scrapers without managing infrastructure.
 
 ## Installation
 
@@ -38,6 +38,6 @@ webquest-mcp
 
 This will launch the MCP server using the streamable-http transport. Configure your MCP-compatible client (e.g., an MCP-aware IDE or agent) to connect to the webquest-mcp server to use the tools listed above.
 
-> To use the Hyperbrowser runner, you need to set the `HYPERBROWSER_API_KEY` environment variable.
+> To use the Hyperbrowser browser, you need to set the `HYPERBROWSER_API_KEY` environment variable.
 
 > To use the Any Article scraper, you need to set the `OPENAI_API_KEY` environment variable.

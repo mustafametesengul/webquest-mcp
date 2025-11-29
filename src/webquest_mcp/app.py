@@ -4,8 +4,7 @@ from dataclasses import dataclass
 
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.session import ServerSession
-from webquest.base import BaseRunner
-from webquest.runners import Hyperbrowser
+from webquest.browsers import Hyperbrowser
 from webquest.scrapers.any_article import (
     AnyArticle,
     AnyArticleRequest,
@@ -35,14 +34,29 @@ from webquest.scrapers.youtube_transcript import (
 
 @dataclass
 class AppContext:
-    runner: BaseRunner
+    any_article: AnyArticle
+    duckduckgo_search: DuckDuckGoSearch
+    google_news_search: GoogleNewsSearch
+    youtube_search: YouTubeSearch
+    youtube_transcript: YouTubeTranscript
 
 
 @asynccontextmanager
 async def app_lifespan(_: FastMCP) -> AsyncIterator[AppContext]:
-    runner = Hyperbrowser()
+    browser = Hyperbrowser()
+    any_article = AnyArticle(browser=browser)
+    duckduckgo_search = DuckDuckGoSearch(browser=browser)
+    google_news_search = GoogleNewsSearch(browser=browser)
+    youtube_search = YouTubeSearch(browser=browser)
+    youtube_transcript = YouTubeTranscript(browser=browser)
     try:
-        yield AppContext(runner=runner)
+        yield AppContext(
+            any_article=any_article,
+            duckduckgo_search=duckduckgo_search,
+            google_news_search=google_news_search,
+            youtube_search=youtube_search,
+            youtube_transcript=youtube_transcript,
+        )
     finally:
         pass
 
@@ -56,9 +70,8 @@ async def any_article(
     ctx: Context[ServerSession, AppContext],
 ) -> AnyArticleResponse:
     """Get the content of an article given its URL."""
-    runner = ctx.request_context.lifespan_context.runner
-    scraper = AnyArticle()
-    response = await runner.run(scraper, request)
+    scraper = ctx.request_context.lifespan_context.any_article
+    response = await scraper.run(request)
     return response
 
 
@@ -68,9 +81,8 @@ async def duckduckgo_search(
     ctx: Context[ServerSession, AppContext],
 ) -> DuckDuckGoSearchResponse:
     """Search the web using DuckDuckGo given a query."""
-    runner = ctx.request_context.lifespan_context.runner
-    scraper = DuckDuckGoSearch()
-    response = await runner.run(scraper, request)
+    scraper = ctx.request_context.lifespan_context.duckduckgo_search
+    response = await scraper.run(request)
     return response
 
 
@@ -80,9 +92,8 @@ async def google_news_search(
     ctx: Context[ServerSession, AppContext],
 ) -> GoogleNewsSearchResponse:
     """Search for news articles using Google News given a query."""
-    runner = ctx.request_context.lifespan_context.runner
-    scraper = GoogleNewsSearch()
-    response = await runner.run(scraper, request)
+    scraper = ctx.request_context.lifespan_context.google_news_search
+    response = await scraper.run(request)
     return response
 
 
@@ -92,9 +103,8 @@ async def youtube_search(
     ctx: Context[ServerSession, AppContext],
 ) -> YouTubeSearchResponse:
     """Search for YouTube videos, channels, posts, and shorts given a query."""
-    runner = ctx.request_context.lifespan_context.runner
-    scraper = YouTubeSearch()
-    response = await runner.run(scraper, request)
+    scraper = ctx.request_context.lifespan_context.youtube_search
+    response = await scraper.run(request)
     return response
 
 
@@ -104,7 +114,6 @@ async def youtube_transcript(
     ctx: Context[ServerSession, AppContext],
 ) -> YouTubeTranscriptResponse:
     """Get the transcript of a YouTube video given its ID."""
-    runner = ctx.request_context.lifespan_context.runner
-    scraper = YouTubeTranscript()
-    response = await runner.run(scraper, request)
+    scraper = ctx.request_context.lifespan_context.youtube_transcript
+    response = await scraper.run(request)
     return response
