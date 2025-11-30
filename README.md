@@ -82,13 +82,6 @@ webquest-mcp-token --auth_secret "your-super-secret-key" --auth_subject "client-
 
 You can also configure these values using environment variables or a `.env` file.
 
-Available options:
-
-- `--auth_secret`: The secret key used to sign the token (required).
-- `--auth_subject`: The subject (user/client) for whom the token is generated (required).
-- `--auth_audience`: The audience for the token (default: `webquest-mcp`).
-- `--auth_expiration_days`: Token validity in days (default: `365`).
-
 ## Disclaimer
 
 This tool is for educational and research purposes only. The developers of WebQuest MCP are not responsible for any misuse of this tool. Scraping websites may violate their Terms of Service. Users are solely responsible for ensuring their activities comply with all applicable laws and website policies.
