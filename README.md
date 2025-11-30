@@ -30,21 +30,64 @@ uv add webquest-mcp
 
 ## Usage
 
-Start the WebQuest MCP server:
+### Starting the Server
+
+To start the WebQuest MCP server, run:
 
 ```bash
 webquest-mcp
 ```
 
-To see the available parameters, run:
+This will launch the MCP server using the `streamable-http` transport. The server will listen for incoming connections from MCP-compatible clients (like Cursor, Windsurf, or other AI agents).
+
+### Configuration
+
+You can configure the server using either environment variables (recommended) or command-line arguments.
+
+#### Environment Variables
+
+Create a `.env` file in your working directory with the following content:
+
+```text
+# Required API Keys
+OPENAI_API_KEY=your_openai_api_key
+HYPERBROWSER_API_KEY=your_hyperbrowser_api_key
+
+# Optional Authentication (JWT)
+AUTH_SECRET=your_jwt_secret_key
+AUTH_AUDIENCE=webquest-mcp
+```
+
+#### Command-Line Arguments
+
+Alternatively, you can pass configuration options directly when running the server:
+
+```bash
+webquest-mcp --openai_api_key "..." --hyperbrowser_api_key "..."
+```
+
+To see all available options, run:
 
 ```bash
 webquest-mcp --help
 ```
 
-Note that there are some required parameters.
+### Token Generation
 
-This will launch the MCP server using the streamable-http transport. Configure your MCP-compatible client (e.g., an MCP-aware IDE or agent) to connect to the WebQuest MCP server to use the tools listed above.
+To generate an authentication token for the MCP client, use the `webquest-mcp-token` command. You need to provide a secret and a subject.
+
+```bash
+webquest-mcp-token --auth_secret "your-super-secret-key" --auth_subject "client-name"
+```
+
+You can also configure these values using environment variables or a `.env` file.
+
+Available options:
+
+- `--auth_secret`: The secret key used to sign the token (required).
+- `--auth_subject`: The subject (user/client) for whom the token is generated (required).
+- `--auth_audience`: The audience for the token (default: `webquest-mcp`).
+- `--auth_expiration_days`: Token validity in days (default: `365`).
 
 ## Disclaimer
 
