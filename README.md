@@ -30,17 +30,57 @@ uv add webquest-mcp
 
 ## Usage
 
-Start the WebQuest MCP server:
+### Starting the server
+
+To start the WebQuest MCP server, run:
 
 ```bash
 webquest-mcp
 ```
 
-This will launch the MCP server using the streamable-http transport. Configure your MCP-compatible client (e.g., an MCP-aware IDE or agent) to connect to the webquest-mcp server to use the tools listed above.
+This will launch the MCP server using the `streamable-http` transport. The server will listen for incoming connections from MCP-compatible clients (like Cursor, Windsurf, or other AI agents).
 
-> To use the Hyperbrowser browser, you need to set the `HYPERBROWSER_API_KEY` environment variable.
+### Configuration
 
-> To use the Any Article scraper, you need to set the `OPENAI_API_KEY` environment variable.
+You can configure the server using either environment variables (recommended) or command-line arguments.
+
+#### Environment variables
+
+Create a `.env` file in your working directory with the following content:
+
+```text
+# Required API keys
+OPENAI_API_KEY=your_openai_api_key
+HYPERBROWSER_API_KEY=your_hyperbrowser_api_key
+
+# Optional authentication (JWT)
+AUTH_SECRET=your_jwt_secret_key
+AUTH_AUDIENCE=webquest-mcp
+```
+
+#### Command-line arguments
+
+Alternatively, you can pass configuration options directly when running the server:
+
+```bash
+webquest-mcp --openai_api_key "..." --hyperbrowser_api_key "..."
+```
+
+To see all available options, run:
+
+```bash
+webquest-mcp --help
+```
+
+### Token generation
+
+To generate an authentication token for the MCP client, use the `webquest-mcp-token` command. You need to provide a secret and a subject.
+
+```bash
+webquest-mcp-token --auth_secret "your-secret-key" --auth_subject "client-name"
+```
+
+You can also configure these values using environment variables or a `.env` file.
 
 ## Disclaimer
 

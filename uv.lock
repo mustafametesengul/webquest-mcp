@@ -1511,11 +1511,12 @@ wheels = [
 
 [[package]]
 name = "webquest-mcp"
-version = "0.3.0"
+version = "0.4.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastmcp" },
-    { name = "python-dotenv" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
     { name = "webquest" },
 ]
 
@@ -1530,7 +1531,8 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastmcp", specifier = ">=2.13.1" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
+    { name = "pydantic", specifier = ">=2.12.4" },
+    { name = "pydantic-settings", specifier = ">=2.12.0" },
     { name = "webquest", specifier = ">=0.7.2" },
 ]
 

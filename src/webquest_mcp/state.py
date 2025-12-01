@@ -3,6 +3,8 @@ from contextlib import asynccontextmanager
 from dataclasses import dataclass
 
 from fastmcp import FastMCP
+from hyperbrowser import AsyncHyperbrowser
+from openai import AsyncOpenAI
 from webquest.browsers import Hyperbrowser
 from webquest.scrapers import (
     AnyArticle,
@@ -11,6 +13,8 @@ from webquest.scrapers import (
     YouTubeSearch,
     YouTubeTranscript,
 )
+
+from webquest_mcp.settings import get_settings
 
 
 @dataclass
@@ -35,8 +39,22 @@ def get_app_state() -> AppState:
 @asynccontextmanager
 async def app_lifespan(_: FastMCP) -> AsyncIterator[None]:
     global _app_state
-    browser = Hyperbrowser()
-    any_article = AnyArticle(browser=browser)
+    settings = get_settings()
+
+    if settings.hyperbrowser_api_key is None:
+        raise RuntimeError("Hyerpbrowser API key is not set in settings.")
+    hyperbrowser_client = AsyncHyperbrowser(
+        api_key=settings.hyperbrowser_api_key.get_secret_value(),
+    )
+
+    if settings.openai_api_key is None:
+        raise RuntimeError("OpenAI API key is not set in settings.")
+    openai_client = AsyncOpenAI(
+        api_key=settings.openai_api_key.get_secret_value(),
+    )
+
+    browser = Hyperbrowser(client=hyperbrowser_client)
+    any_article = AnyArticle(browser=browser, client=openai_client)
     duckduckgo_search = DuckDuckGoSearch(browser=browser)
     google_news_search = GoogleNewsSearch(browser=browser)
     youtube_search = YouTubeSearch(browser=browser)
