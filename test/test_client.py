@@ -10,18 +10,15 @@ class Settings(BaseSettings):
         env_file=".env",
         extra="ignore",
     )
-    access_token: SecretStr = Field(default=..., min_length=1)
+    client_access_token: SecretStr = Field(default=..., min_length=1)
+    client_url: str = Field(default="http://127.0.0.1:8000/mcp")
 
 
 async def main():
     settings = Settings()
+    access_token = settings.client_access_token.get_secret_value()
 
-    access_token = settings.access_token.get_secret_value()
-
-    async with Client(
-        "http://127.0.0.1:8000/mcp",
-        auth=access_token,
-    ) as client:
+    async with Client(settings.client_url, auth=access_token) as client:
         await client.ping()
 
 

@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     auth_audience: str | None = Field(default="webquest-mcp", min_length=1)
     openai_api_key: SecretStr | None = Field(default=None)
     hyperbrowser_api_key: SecretStr | None = Field(default=None)
+    ngrok_authtoken: SecretStr | None = Field(default=None)
+    port: int = Field(default=8000, ge=1, le=65535)
 
 
 _settings = Settings()

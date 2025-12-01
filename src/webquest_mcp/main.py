@@ -27,7 +27,12 @@ if settings.auth_secret is not None and settings.auth_audience is not None:
     )
 
 
-mcp = FastMCP("WebQuest MCP", lifespan=app_lifespan, auth=auth)
+mcp = FastMCP(
+    "WebQuest MCP",
+    lifespan=app_lifespan,
+    auth=auth,
+    port=settings.port,
+)
 
 
 @mcp.tool()
