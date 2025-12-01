@@ -27,12 +27,7 @@ if settings.auth_secret is not None and settings.auth_audience is not None:
     )
 
 
-mcp = FastMCP(
-    "WebQuest MCP",
-    lifespan=app_lifespan,
-    auth=auth,
-    port=settings.port,
-)
+mcp = FastMCP("WebQuest MCP", lifespan=app_lifespan, auth=auth)
 
 
 @mcp.tool()
@@ -91,4 +86,4 @@ async def youtube_transcript(
 
 
 def main() -> None:
-    mcp.run(transport="streamable-http")
+    mcp.run(transport="streamable-http", port=settings.port)

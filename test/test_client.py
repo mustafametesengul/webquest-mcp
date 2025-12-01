@@ -1,6 +1,6 @@
 import asyncio
 
-from fastmcp import Client
+from openai import AsyncOpenAI
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -12,14 +12,31 @@ class Settings(BaseSettings):
     )
     client_access_token: SecretStr = Field(default=..., min_length=1)
     client_url: str = Field(default="http://127.0.0.1:8000/mcp")
+    openai_api_key: SecretStr = Field(default=...)
 
 
-async def main():
+async def main() -> None:
     settings = Settings()
     access_token = settings.client_access_token.get_secret_value()
+    openai_api_key = settings.openai_api_key.get_secret_value()
 
-    async with Client(settings.client_url, auth=access_token) as client:
-        await client.ping()
+    client = AsyncOpenAI(api_key=openai_api_key)
+
+    response = await client.responses.create(
+        model="gpt-5.1",
+        tools=[
+            {
+                "type": "mcp",
+                "server_label": "webquest_mcp",
+                "server_url": settings.client_url,
+                "require_approval": "never",
+                "headers": {"Authorization": f"Bearer {access_token}"},
+            },
+        ],
+        input="Summarize the latest podcast from Lex Fridman.",
+    )
+
+    print(response.output_text)
 
 
 if __name__ == "__main__":
