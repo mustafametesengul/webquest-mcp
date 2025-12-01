@@ -49,11 +49,11 @@ You can configure the server using either environment variables (recommended) or
 Create a `.env` file in your working directory with the following content:
 
 ```text
-# Required API Keys
+# Required API keys
 OPENAI_API_KEY=your_openai_api_key
 HYPERBROWSER_API_KEY=your_hyperbrowser_api_key
 
-# Optional Authentication (JWT)
+# Optional authentication (JWT)
 AUTH_SECRET=your_jwt_secret_key
 AUTH_AUDIENCE=webquest-mcp
 ```
