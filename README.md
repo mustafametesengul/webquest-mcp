@@ -30,7 +30,7 @@ uv add webquest-mcp
 
 ## Usage
 
-### Starting the Server
+### Starting the server
 
 To start the WebQuest MCP server, run:
 
@@ -44,7 +44,7 @@ This will launch the MCP server using the `streamable-http` transport. The serve
 
 You can configure the server using either environment variables (recommended) or command-line arguments.
 
-#### Environment Variables
+#### Environment variables
 
 Create a `.env` file in your working directory with the following content:
 
@@ -58,7 +58,7 @@ AUTH_SECRET=your_jwt_secret_key
 AUTH_AUDIENCE=webquest-mcp
 ```
 
-#### Command-Line Arguments
+#### Command-line arguments
 
 Alternatively, you can pass configuration options directly when running the server:
 
@@ -72,12 +72,12 @@ To see all available options, run:
 webquest-mcp --help
 ```
 
-### Token Generation
+### Token generation
 
 To generate an authentication token for the MCP client, use the `webquest-mcp-token` command. You need to provide a secret and a subject.
 
 ```bash
-webquest-mcp-token --auth_secret "your-super-secret-key" --auth_subject "client-name"
+webquest-mcp-token --auth_secret "your-secret-key" --auth_subject "client-name"
 ```
 
 You can also configure these values using environment variables or a `.env` file.
