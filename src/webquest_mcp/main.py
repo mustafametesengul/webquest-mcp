@@ -1,7 +1,5 @@
-from dotenv import load_dotenv
 from fastmcp import FastMCP
 from fastmcp.server.auth.providers.jwt import JWTVerifier
-from fastmcp.server.dependencies import get_access_token
 from webquest.scrapers import (
     AnyArticleRequest,
     AnyArticleResponse,
@@ -37,10 +35,6 @@ async def any_article(
     request: AnyArticleRequest,
 ) -> AnyArticleResponse:
     """Get the content of an article given its URL."""
-    token = get_access_token()
-    if not token:
-        raise Exception("Access token is required to use this tool.")
-    print(token.claims)
     app_state = get_app_state()
     scraper = app_state.any_article
     response = await scraper.run(request)
@@ -92,5 +86,4 @@ async def youtube_transcript(
 
 
 def main() -> None:
-    load_dotenv()
     mcp.run(transport="streamable-http")
