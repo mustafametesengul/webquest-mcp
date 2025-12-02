@@ -74,10 +74,10 @@ webquest-mcp --help
 
 ### Token generation
 
-To generate an authentication token for the MCP client, use the `webquest-mcp-token` command. You need to provide a secret and a subject.
+To generate an authentication token for the MCP client, use the `webquest-mcp-token-generator` command. You need to provide a secret and a subject.
 
 ```bash
-webquest-mcp-token --auth_secret "your-secret-key" --auth_subject "client-name"
+webquest-mcp-token-generator --auth_secret "your-secret-key" --auth_subject "client-name"
 ```
 
 You can also configure these values using environment variables or a `.env` file.

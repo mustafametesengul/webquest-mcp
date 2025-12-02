@@ -33,7 +33,7 @@ async def main() -> None:
                 "headers": {"Authorization": f"Bearer {access_token}"},
             },
         ],
-        input="Summarize the latest podcast from Lex Fridman.",
+        input="Summarize the latest video from TLDR News Global.",
     )
 
     print(response.output_text)
