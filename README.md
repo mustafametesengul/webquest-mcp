@@ -44,7 +44,7 @@ The server reads its configuration from environment variables (or a `.env` file 
 - `HYPERBROWSER_API_KEY` (required): Hyperbrowser API key.
 - `AUTH_SECRET` (optional): JWT secret to enable authenticated requests. Leave unset to disable auth.
 - `AUTH_AUDIENCE` (optional, default `webquest-mcp`): JWT audience to validate when auth is enabled.
-- `TRANSPORT` (optional, default `stdio`): MCP transport. Supported values: `stdio`, `http`, `sse`, `streamable-http`.
+- `TRANSPORT` (optional, default `stdio`): MCP transport. Supported values: `stdio`, `sse`, `streamable-http`.
 - `PORT` (optional, default `8000`): Port to use when the transport is HTTP-based.
 
 Example `.env`:

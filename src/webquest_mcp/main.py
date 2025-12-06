@@ -26,7 +26,6 @@ class Settings(BaseSettings):
     auth_audience: str | None = Field(default="webquest-mcp")
     transport: Literal[
         "stdio",
-        "http",
         "sse",
         "streamable-http",
     ] = Field(default="stdio")
@@ -106,7 +105,10 @@ async def youtube_transcript(
 
 
 def main() -> None:
-    mcp.run(transport=settings.transport, port=settings.port)
+    if settings.transport == "stdio":
+        mcp.run(transport=settings.transport)
+    else:
+        mcp.run(transport=settings.transport, port=settings.port)
 
 
 if __name__ == "__main__":
