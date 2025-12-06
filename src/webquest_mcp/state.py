@@ -2,7 +2,6 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 
-import ngrok
 from fastmcp import FastMCP
 from hyperbrowser import AsyncHyperbrowser
 from openai import AsyncOpenAI
@@ -68,9 +67,6 @@ async def app_lifespan(_: FastMCP) -> AsyncIterator[None]:
         youtube_transcript=youtube_transcript,
     )
     _app_state = app_state
-    if settings.ngrok_authtoken is not None:
-        ngrok_authtoken = settings.ngrok_authtoken.get_secret_value()
-        ngrok.forward(settings.port, authtoken=ngrok_authtoken)
     try:
         yield
     finally:

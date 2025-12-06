@@ -86,4 +86,4 @@ async def youtube_transcript(
 
 
 def main() -> None:
-    mcp.run(transport="streamable-http", port=settings.port)
+    mcp.run(transport=settings.transport, port=settings.port)

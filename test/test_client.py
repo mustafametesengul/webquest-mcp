@@ -10,7 +10,7 @@ class Settings(BaseSettings):
         env_file=".env",
         extra="ignore",
     )
-    client_access_token: SecretStr = Field(default=..., min_length=1)
+    client_access_token: SecretStr = Field(default=...)
     client_url: str = Field(default="http://127.0.0.1:8000/mcp")
     openai_api_key: SecretStr = Field(default=...)
 
