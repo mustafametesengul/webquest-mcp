@@ -1,5 +1,10 @@
+from typing import Literal
+
+from dotenv import load_dotenv
 from fastmcp import FastMCP
 from fastmcp.server.auth.providers.jwt import JWTVerifier
+from pydantic import Field, SecretStr
+from pydantic_settings import BaseSettings
 from webquest.scrapers import (
     AnyArticleRequest,
     AnyArticleResponse,
@@ -13,10 +18,25 @@ from webquest.scrapers import (
     YouTubeTranscriptResponse,
 )
 
-from webquest_mcp.settings import get_settings
-from webquest_mcp.state import app_lifespan, get_app_state
+from webquest_mcp.app_state import app_lifespan, get_app_state
 
-settings = get_settings()
+
+class Settings(BaseSettings):
+    auth_secret: SecretStr | None = Field(default=None)
+    auth_audience: str | None = Field(default="webquest-mcp")
+    transport: Literal[
+        "stdio",
+        "http",
+        "sse",
+        "streamable-http",
+    ] = Field(default="stdio")
+    port: int = Field(default=8000)
+
+
+load_dotenv()
+
+settings = Settings()
+
 
 auth: JWTVerifier | None = None
 if settings.auth_secret is not None and settings.auth_audience is not None:
@@ -87,3 +107,7 @@ async def youtube_transcript(
 
 def main() -> None:
     mcp.run(transport=settings.transport, port=settings.port)
+
+
+if __name__ == "__main__":
+    main()

@@ -38,49 +38,54 @@ To start the WebQuest MCP server, run:
 webquest-mcp
 ```
 
-This will launch the MCP server using the `streamable-http` transport. The server will listen for incoming connections from MCP-compatible clients (like Cursor, Windsurf, or other AI agents).
+The server reads its configuration from environment variables (or a `.env` file loaded automatically). Available settings:
 
-### Configuration
+- `OPENAI_API_KEY` (required): OpenAI API key for scrapers.
+- `HYPERBROWSER_API_KEY` (required): Hyperbrowser API key.
+- `AUTH_SECRET` (optional): JWT secret to enable authenticated requests. Leave unset to disable auth.
+- `AUTH_AUDIENCE` (optional, default `webquest-mcp`): JWT audience to validate when auth is enabled.
+- `TRANSPORT` (optional, default `stdio`): MCP transport. Supported values: `stdio`, `http`, `sse`, `streamable-http`.
+- `PORT` (optional, default `8000`): Port to use when the transport is HTTP-based.
 
-You can configure the server using either environment variables (recommended) or command-line arguments.
-
-#### Environment variables
-
-Create a `.env` file in your working directory with the following content:
+Example `.env`:
 
 ```text
-# Required API keys
 OPENAI_API_KEY=your_openai_api_key
 HYPERBROWSER_API_KEY=your_hyperbrowser_api_key
-
-# Optional authentication (JWT)
 AUTH_SECRET=your_jwt_secret_key
 AUTH_AUDIENCE=webquest-mcp
-```
-
-#### Command-line arguments
-
-Alternatively, you can pass configuration options directly when running the server:
-
-```bash
-webquest-mcp --openai_api_key "..." --hyperbrowser_api_key "..."
-```
-
-To see all available options, run:
-
-```bash
-webquest-mcp --help
+TRANSPORT=streamable-http
+PORT=8000
 ```
 
 ### Token generation
 
-To generate an authentication token for the MCP client, use the `webquest-mcp-token-generator` command. You need to provide a secret and a subject.
+To generate an authentication token for the MCP client, set the required environment variables and run the generator.
 
-```bash
-webquest-mcp-token-generator --auth_secret "your-secret-key" --auth_subject "client-name"
+Required settings:
+
+- `AUTH_SECRET`: JWT secret used by the server.
+- `AUTH_SUBJECT`: Identifier for the client receiving the token.
+
+Optional settings:
+
+- `AUTH_AUDIENCE` (default `webquest-mcp`)
+- `AUTH_EXPIRATION_DAYS` (default `365`)
+
+Example `.env`:
+
+```text
+AUTH_SECRET=your-secret-key
+AUTH_SUBJECT=client-name
+AUTH_AUDIENCE=webquest-mcp
+AUTH_EXPIRATION_DAYS=365
 ```
 
-You can also configure these values using environment variables or a `.env` file.
+Run the generator:
+
+```bash
+webquest-mcp-token-generator
+```
 
 ## Disclaimer
 

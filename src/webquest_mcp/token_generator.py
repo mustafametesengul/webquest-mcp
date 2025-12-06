@@ -1,16 +1,12 @@
 from datetime import datetime, timedelta, timezone
 
 import jwt
+from dotenv import load_dotenv
 from pydantic import Field, PositiveInt, SecretStr
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        extra="ignore",
-        cli_parse_args=True,
-    )
     auth_secret: SecretStr = Field(default=...)
     auth_audience: str = Field(default="webquest-mcp")
     auth_expiration_days: PositiveInt = Field(default=365)
@@ -18,6 +14,8 @@ class Settings(BaseSettings):
 
 
 def main() -> None:
+    load_dotenv()
+
     settings = Settings()
     secret = settings.auth_secret.get_secret_value()
 
@@ -33,3 +31,7 @@ def main() -> None:
     token = jwt.encode(payload, secret, algorithm="HS256")
     print(f"Generated token:\n{token}\n")
     print("You can provide this token to your MCP client.")
+
+
+if __name__ == "__main__":
+    main()

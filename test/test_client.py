@@ -1,34 +1,31 @@
 import asyncio
 
+from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from pydantic import Field, SecretStr
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        extra="ignore",
-    )
-    client_access_token: SecretStr = Field(default=...)
-    client_url: str = Field(default="http://127.0.0.1:8000/mcp")
-    openai_api_key: SecretStr = Field(default=...)
+    access_token: SecretStr = Field(default=...)
+    server_url: str = Field(default="http://127.0.0.1:8000/mcp")
 
 
 async def main() -> None:
+    load_dotenv()
+
     settings = Settings()
-    access_token = settings.client_access_token.get_secret_value()
-    openai_api_key = settings.openai_api_key.get_secret_value()
+    access_token = settings.access_token.get_secret_value()
 
-    client = AsyncOpenAI(api_key=openai_api_key)
+    openai_client = AsyncOpenAI()
 
-    response = await client.responses.create(
+    response = await openai_client.responses.create(
         model="gpt-5.1",
         tools=[
             {
                 "type": "mcp",
                 "server_label": "webquest_mcp",
-                "server_url": settings.client_url,
+                "server_url": settings.server_url,
                 "require_approval": "never",
                 "headers": {"Authorization": f"Bearer {access_token}"},
             },
