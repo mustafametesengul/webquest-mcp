@@ -11,10 +11,10 @@ class Settings(BaseSettings):
         extra="ignore",
         cli_parse_args=True,
     )
-    auth_secret: SecretStr = Field(default=..., min_length=1)
-    auth_audience: str = Field(default="webquest-mcp", min_length=1)
+    auth_secret: SecretStr = Field(default=...)
+    auth_audience: str = Field(default="webquest-mcp")
     auth_expiration_days: PositiveInt = Field(default=365)
-    auth_subject: str = Field(default=..., min_length=1)
+    auth_subject: str = Field(default=...)
 
 
 def main() -> None:
