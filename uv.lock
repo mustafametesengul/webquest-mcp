@@ -1495,7 +1495,7 @@ wheels = [
 
 [[package]]
 name = "webquest"
-version = "0.7.2"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -1503,15 +1503,17 @@ dependencies = [
     { name = "openai" },
     { name = "playwright" },
     { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "python-dotenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/c9/9c9967ae9a7eecd38c6267403b910928ec3ff061e1ae214da7401b977c12/webquest-0.7.2.tar.gz", hash = "sha256:195fed6cdb325b910711ebbf05dcf28d8b7a51ac40990c258e287e66f3cd66c5", size = 8127, upload-time = "2025-11-30T13:30:14.823Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3c/a4/9fd328a111359b6380689d9719fc0742cdc6c4745123bb693170fcb24b1c/webquest-0.8.0.tar.gz", hash = "sha256:762379315b491a94e8e98e7427717c2958edd953229db248bbe9231f132b2a15", size = 9015, upload-time = "2025-12-07T11:23:34.241Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1b/d4/980933adcab511d65e34b2b08a6d0ae2151a1d26aad1ca2108c9e4c9da4a/webquest-0.7.2-py3-none-any.whl", hash = "sha256:cb1e7e13f9c7de2143ebbf35a88d5524ca57400d95ce88eddb4973ffc9fd7f75", size = 16967, upload-time = "2025-11-30T13:30:13.704Z" },
+    { url = "https://files.pythonhosted.org/packages/f7/2b/bf18396a5d87f23888c32801b796de40d71c326ec35f0adc58f9772c44a8/webquest-0.8.0-py3-none-any.whl", hash = "sha256:da29590f61c3717f85cec071e78b4f9bafee16946e4cac2659ffdf16abc99092", size = 20801, upload-time = "2025-12-07T11:23:33.121Z" },
 ]
 
 [[package]]
 name = "webquest-mcp"
-version = "0.5.1"
+version = "0.6.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastmcp" },
@@ -1520,6 +1522,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pyjwt" },
+    { name = "python-dotenv" },
     { name = "webquest" },
 ]
 
@@ -1539,7 +1542,8 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.12.4" },
     { name = "pydantic-settings", specifier = ">=2.12.0" },
     { name = "pyjwt", specifier = ">=2.10.1" },
-    { name = "webquest", specifier = ">=0.7.2" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
+    { name = "webquest", specifier = ">=0.8.0" },
 ]
 
 [package.metadata.requires-dev]
