@@ -21,6 +21,8 @@ async def main() -> None:
 
     response = await openai_client.responses.create(
         model="gpt-5.1",
+        max_output_tokens=10000,
+        max_tool_calls=5,
         tools=[
             {
                 "type": "mcp",
