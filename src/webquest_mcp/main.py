@@ -1,10 +1,9 @@
 from typing import Literal
 
-from dotenv import load_dotenv
 from fastmcp import FastMCP
 from fastmcp.server.auth.providers.jwt import JWTVerifier
 from pydantic import Field, SecretStr
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from webquest.scrapers import (
     AnyArticleRequest,
     AnyArticleResponse,
@@ -22,6 +21,8 @@ from webquest_mcp.app_state import app_lifespan, get_app_state
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
     auth_secret: SecretStr | None = Field(default=None)
     auth_audience: str | None = Field(default="webquest-mcp")
     transport: Literal[
@@ -31,8 +32,6 @@ class Settings(BaseSettings):
     ] = Field(default="stdio")
     port: int = Field(default=8000)
 
-
-load_dotenv()
 
 settings = Settings()
 

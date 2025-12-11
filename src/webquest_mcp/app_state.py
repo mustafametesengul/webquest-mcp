@@ -3,7 +3,6 @@ from contextlib import asynccontextmanager
 from dataclasses import dataclass
 
 from fastmcp import FastMCP
-from hyperbrowser import AsyncHyperbrowser
 from webquest.browsers import Hyperbrowser
 from webquest.scrapers import (
     AnyArticle,
@@ -37,9 +36,7 @@ def get_app_state() -> AppState:
 async def app_lifespan(_: FastMCP) -> AsyncIterator[None]:
     global _app_state
 
-    hyperbrowser_client = AsyncHyperbrowser()
-
-    browser = Hyperbrowser(client=hyperbrowser_client)
+    browser = Hyperbrowser()
     any_article = AnyArticle(browser=browser)
     duckduckgo_search = DuckDuckGoSearch(browser=browser)
     google_news_search = GoogleNewsSearch(browser=browser)

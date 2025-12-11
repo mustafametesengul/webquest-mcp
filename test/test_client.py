@@ -1,23 +1,23 @@
 import asyncio
 
-from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from pydantic import Field, SecretStr
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
+    openai_api_key: SecretStr = Field(default=...)
     access_token: SecretStr = Field(default=...)
-    server_url: str = Field(default="http://127.0.0.1:8000/mcp")
+    server_url: str = Field(default=...)
 
 
 async def main() -> None:
-    load_dotenv()
-
     settings = Settings()
     access_token = settings.access_token.get_secret_value()
 
-    openai_client = AsyncOpenAI()
+    openai_client = AsyncOpenAI(api_key=settings.openai_api_key.get_secret_value())
 
     response = await openai_client.responses.create(
         model="gpt-5.1",

@@ -1495,7 +1495,7 @@ wheels = [
 
 [[package]]
 name = "webquest"
-version = "0.8.0"
+version = "0.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -1504,30 +1504,27 @@ dependencies = [
     { name = "playwright" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
-    { name = "python-dotenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3c/a4/9fd328a111359b6380689d9719fc0742cdc6c4745123bb693170fcb24b1c/webquest-0.8.0.tar.gz", hash = "sha256:762379315b491a94e8e98e7427717c2958edd953229db248bbe9231f132b2a15", size = 9015, upload-time = "2025-12-07T11:23:34.241Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/78/e7/a86ac8a3588e2a2376c7a38da1d14454baa36f6a885eda3c78497018a644/webquest-0.9.0.tar.gz", hash = "sha256:17028f9b5f155242b18cefa50663e4c788f3c653e5fcc2afc03ef983f4a9481d", size = 9428, upload-time = "2025-12-11T20:24:23.928Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f7/2b/bf18396a5d87f23888c32801b796de40d71c326ec35f0adc58f9772c44a8/webquest-0.8.0-py3-none-any.whl", hash = "sha256:da29590f61c3717f85cec071e78b4f9bafee16946e4cac2659ffdf16abc99092", size = 20801, upload-time = "2025-12-07T11:23:33.121Z" },
+    { url = "https://files.pythonhosted.org/packages/62/82/21d6b6e5eb9398408ea7978d10500a82d4dbe1a47b87920b35f185fad3ca/webquest-0.9.0-py3-none-any.whl", hash = "sha256:f67495b127f4f7b4b3ee5a4727b70d8310a0d28c6be95a379736fc0019ae1813", size = 21646, upload-time = "2025-12-11T20:24:23.115Z" },
 ]
 
 [[package]]
 name = "webquest-mcp"
-version = "0.6.0"
+version = "0.7.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastmcp" },
-    { name = "hyperbrowser" },
-    { name = "openai" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pyjwt" },
-    { name = "python-dotenv" },
     { name = "webquest" },
 ]
 
 [package.dev-dependencies]
 dev = [
+    { name = "openai" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "pytest-mypy" },
@@ -1537,17 +1534,15 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastmcp", specifier = ">=2.13.1" },
-    { name = "hyperbrowser", specifier = ">=0.73.0" },
-    { name = "openai", specifier = ">=2.8.0" },
     { name = "pydantic", specifier = ">=2.12.4" },
     { name = "pydantic-settings", specifier = ">=2.12.0" },
     { name = "pyjwt", specifier = ">=2.10.1" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
-    { name = "webquest", specifier = ">=0.8.0" },
+    { name = "webquest", specifier = ">=0.9.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "openai", specifier = ">=2.8.0" },
     { name = "pytest", specifier = ">=8.4.2" },
     { name = "pytest-asyncio", specifier = ">=1.2.0" },
     { name = "pytest-mypy", specifier = ">=1.0.1" },
