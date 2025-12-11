@@ -1,6 +1,6 @@
 [project]
 name = "webquest-mcp"
-version = "0.7.0"
+version = "0.8.0"
 description = "WebQuest MCP is a Model Context Protocol (MCP) server that exposes powerful web search and scraping tools to AI agents and MCP-compatible clients."
 readme = "README.md"
 requires-python = ">=3.12"
