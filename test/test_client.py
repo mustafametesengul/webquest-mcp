@@ -1,19 +1,18 @@
 import asyncio
 
-from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from pydantic import Field, SecretStr
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
     access_token: SecretStr = Field(default=...)
-    server_url: str = Field(default="http://127.0.0.1:8000/mcp")
+    server_url: str = Field(default=...)
 
 
 async def main() -> None:
-    load_dotenv()
-
     settings = Settings()
     access_token = settings.access_token.get_secret_value()
 
