@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/logo.svg" alt="WebQuest MCP Logo" width="300">
+  <img src="docs/images/logo.svg" alt="WebQuest MCP Logo" width="350">
 </p>
 
 # WebQuest MCP
