@@ -1,18 +1,12 @@
+<p align="center">
+  <img src="docs/images/logo.svg" alt="WebQuest MCP Logo" width="350">
+</p>
+
 # WebQuest MCP
 
 WebQuest MCP is a Model Context Protocol (MCP) server that exposes powerful web search and scraping tools to AI agents and MCP-compatible clients.
 
-**Scrapers**
-
-- **Any Article:** Extracts readable content from arbitrary web articles.
-- **DuckDuckGo Search:** General web search using DuckDuckGo.
-- **Google News Search:** News-focused search via Google News.
-- **YouTube Search:** Search YouTube videos, channels, posts, and shorts.
-- **YouTube Transcript:** Fetch transcripts for YouTube videos.
-
-**Browsers**
-
-- **Hyperbrowser:** A cloud-based browser service for running Playwright scrapers without managing infrastructure.
+For available scrapers and browsers, see the [WebQuest documentation](https://mustafametesengul.github.io/webquest/).
 
 ## Installation
 
