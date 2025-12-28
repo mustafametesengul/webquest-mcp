@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/logo.svg" alt="WebQuest MCP Logo" width="350">
+  <img src="https://github.com/mustafametesengul/webquest-mcp/raw/main/docs/images/logo.svg" alt="WebQuest MCP Logo" width="350">
 </p>
 
 # WebQuest MCP
@@ -36,43 +36,47 @@ The server reads its configuration from environment variables (or a `.env` file 
 
 - `OPENAI_API_KEY` (required): OpenAI API key for scrapers.
 - `HYPERBROWSER_API_KEY` (required): Hyperbrowser API key.
-- `AUTH_SECRET` (optional): JWT secret to enable authenticated requests. Leave unset to disable auth.
-- `AUTH_AUDIENCE` (optional, default `webquest-mcp`): JWT audience to validate when auth is enabled.
-- `TRANSPORT` (optional, default `stdio`): MCP transport. Supported values: `stdio`, `sse`, `streamable-http`.
-- `PORT` (optional, default `8000`): Port to use when the transport is HTTP-based.
+- `WEBQUEST_MCP_AUTH_SECRET` (optional): JWT secret to enable authenticated requests. Leave unset to disable auth.
+- `WEBQUEST_MCP_AUTH_AUDIENCE` (optional, default `webquest-mcp`): JWT audience to validate when auth is enabled.
+- `WEBQUEST_MCP_TRANSPORT` (optional, default `stdio`): MCP transport. Supported values: `stdio`, `sse`, `streamable-http`.
+- `WEBQUEST_MCP_HOST` (optional, default `localhost`): Host to bind when the transport is HTTP-based.
+- `WEBQUEST_MCP_PORT` (optional, default `8000`): Port to use when the transport is HTTP-based.
 
 Example `.env`:
 
 ```text
 OPENAI_API_KEY=your_openai_api_key
 HYPERBROWSER_API_KEY=your_hyperbrowser_api_key
-AUTH_SECRET=your_jwt_secret_key
-AUTH_AUDIENCE=webquest-mcp
-TRANSPORT=streamable-http
-PORT=8000
+WEBQUEST_MCP_AUTH_SECRET=your_jwt_secret_key
+WEBQUEST_MCP_AUTH_AUDIENCE=webquest-mcp
+WEBQUEST_MCP_TRANSPORT=streamable-http
+WEBQUEST_MCP_HOST=localhost
+WEBQUEST_MCP_PORT=8000
 ```
 
 ### Token generation
 
 To generate an authentication token for the MCP client, set the required environment variables and run the generator.
 
+The token generator uses the same `WEBQUEST_MCP_*` prefix as the server.
+
 Required settings:
 
-- `AUTH_SECRET`: JWT secret used by the server.
-- `AUTH_SUBJECT`: Identifier for the client receiving the token.
+- `WEBQUEST_MCP_AUTH_SECRET`: JWT secret used by the server.
+- `WEBQUEST_MCP_AUTH_SUBJECT`: Identifier for the client receiving the token.
 
 Optional settings:
 
-- `AUTH_AUDIENCE` (default `webquest-mcp`)
-- `AUTH_EXPIRATION_DAYS` (default `365`)
+- `WEBQUEST_MCP_AUTH_AUDIENCE` (default `webquest-mcp`)
+- `WEBQUEST_MCP_AUTH_EXPIRATION_DAYS` (default `365`)
 
 Example `.env`:
 
 ```text
-AUTH_SECRET=your-secret-key
-AUTH_SUBJECT=client-name
-AUTH_AUDIENCE=webquest-mcp
-AUTH_EXPIRATION_DAYS=365
+WEBQUEST_MCP_AUTH_SECRET=your-secret-key
+WEBQUEST_MCP_AUTH_SUBJECT=client-name
+WEBQUEST_MCP_AUTH_AUDIENCE=webquest-mcp
+WEBQUEST_MCP_AUTH_EXPIRATION_DAYS=365
 ```
 
 Run the generator:

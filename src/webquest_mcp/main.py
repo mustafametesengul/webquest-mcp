@@ -21,7 +21,11 @@ from webquest_mcp.app_state import app_lifespan, get_app_state
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_prefix="WEBQUEST_MCP_",
+        env_file=".env",
+        extra="ignore",
+    )
 
     auth_secret: SecretStr | None = Field(default=None)
     auth_audience: str | None = Field(default="webquest-mcp")
@@ -30,6 +34,7 @@ class Settings(BaseSettings):
         "sse",
         "streamable-http",
     ] = Field(default="stdio")
+    host: str = Field(default="localhost")
     port: int = Field(default=8000)
 
 
@@ -107,7 +112,7 @@ def main() -> None:
     if settings.transport == "stdio":
         mcp.run(transport=settings.transport)
     else:
-        mcp.run(transport=settings.transport, port=settings.port)
+        mcp.run(transport=settings.transport, port=settings.port, host=settings.host)
 
 
 if __name__ == "__main__":

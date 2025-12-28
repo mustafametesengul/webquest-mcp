@@ -1,0 +1,7 @@
+*
+!src/
+!tests/
+!pyproject.toml
+!uv.lock
+!.python-version
+!README.md

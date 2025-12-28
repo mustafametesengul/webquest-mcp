@@ -6,7 +6,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore",
+        env_prefix="WEBQUEST_MCP_",
+    )
 
     auth_secret: SecretStr = Field(default=...)
     auth_audience: str = Field(default="webquest-mcp")
