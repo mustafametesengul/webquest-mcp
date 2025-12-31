@@ -28,3 +28,5 @@ ENV PATH="/app/.venv/bin:$PATH"
 USER nonroot
 
 WORKDIR /app
+
+ENTRYPOINT ["webquest-mcp"]
