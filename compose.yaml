@@ -2,7 +2,6 @@ services:
   mcp:
     build:
       context: .
-    entrypoint: [ "webquest-mcp" ]
     environment:
       - WEBQUEST_MCP_AUTH_SECRET
       - WEBQUEST_MCP_AUTH_AUDIENCE
