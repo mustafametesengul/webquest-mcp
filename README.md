@@ -85,6 +85,22 @@ Run the generator:
 webquest-mcp-token-generator
 ```
 
+### Docker
+
+Run the published image:
+
+```bash
+docker run --rm -p 8000:8000 mustafametesengul/webquest-mcp
+```
+
+Configure the server using environment variables (or a `.env` file) as described above.
+
+Or use Docker Compose (builds locally by default):
+
+```bash
+docker compose up
+```
+
 ## Disclaimer
 
 This tool is for educational and research purposes only. The developers of WebQuest MCP are not responsible for any misuse of this tool. Scraping websites may violate their Terms of Service. Users are solely responsible for ensuring their activities comply with all applicable laws and website policies.
