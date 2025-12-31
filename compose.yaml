@@ -25,6 +25,7 @@ services:
     command: http mcp:8000
     environment:
       - NGROK_AUTHTOKEN
+    profiles: [ "ngrok", "test" ]
     depends_on:
       - mcp
     ports:
