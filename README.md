@@ -82,7 +82,7 @@ WEBQUEST_MCP_AUTH_EXPIRATION_DAYS=365
 Run the generator:
 
 ```bash
-webquest-mcp-token-generator
+webquest-mcp token
 ```
 
 ### Docker

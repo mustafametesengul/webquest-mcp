@@ -1,6 +1,6 @@
 [project]
 name = "webquest-mcp"
-version = "0.10.3"
+version = "0.11.0"
 description = "WebQuest MCP is a Model Context Protocol (MCP) server that exposes powerful web search and scraping tools to AI agents and MCP-compatible clients."
 readme = "README.md"
 license = "Apache-2.0"
@@ -10,15 +10,14 @@ dependencies = [
     "pydantic>=2.12.4",
     "pydantic-settings>=2.12.0",
     "pyjwt>=2.10.1",
-    "webquest>=0.12.2",
+    "webquest>=0.12.3",
 ]
 
 [project.urls]
 Source = "https://github.com/mustafametesengul/webquest-mcp"
 
 [project.scripts]
-webquest-mcp = "webquest_mcp.main:main"
-webquest-mcp-token-generator = "webquest_mcp.token_generator:main"
+webquest-mcp = "webquest_mcp.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.8.18,<0.9.0"]
