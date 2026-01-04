@@ -25,7 +25,6 @@ services:
     command: http mcp:8000
     environment:
       - NGROK_AUTHTOKEN
-    profiles: [ "ngrok", "test" ]
     depends_on:
       - mcp
     ports:
@@ -41,6 +40,8 @@ services:
       - TEST_ACCESS_TOKEN
       - TEST_SERVER_URL
       - OPENAI_API_KEY
+    volumes:
+      - ./tests:/app/tests:ro
     entrypoint: [ "python", "tests/test_client.py" ]
     profiles: [ "test" ]
     develop:
