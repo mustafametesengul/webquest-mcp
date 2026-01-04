@@ -27,13 +27,13 @@ uv run pytest
 Start services:
 
 ```bash
-docker compose up
+docker compose up -w
 ```
 
 Run integration tests:
 
 ```bash
-docker compose run --rm test
+uv run pytest -m integration
 ```
 
 Stop services:

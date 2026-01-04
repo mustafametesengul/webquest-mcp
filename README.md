@@ -90,10 +90,9 @@ webquest-mcp token
 Run the published image:
 
 ```bash
-docker run --rm -p 8000:8000 \
-  -e OPENAI_API_KEY=your_openai_api_key \
-  -e HYPERBROWSER_API_KEY=your_hyperbrowser_api_key \
-  mustafametesengul/webquest-mcp
+docker run --rm -p 8000:8000 --env-file .env \
+  -e WEBQUEST_MCP_HOST=0.0.0.0 \
+  mustafametesengul/webquest-mcp webquest-mcp
 ```
 
 ## Disclaimer
