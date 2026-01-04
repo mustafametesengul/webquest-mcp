@@ -90,15 +90,10 @@ webquest-mcp token
 Run the published image:
 
 ```bash
-docker run --rm -p 8000:8000 mustafametesengul/webquest-mcp
-```
-
-Configure the server using environment variables (or a `.env` file) as described above.
-
-Or use Docker Compose (builds locally by default):
-
-```bash
-docker compose up
+docker run --rm -p 8000:8000 \
+  -e OPENAI_API_KEY=your_openai_api_key \
+  -e HYPERBROWSER_API_KEY=your_hyperbrowser_api_key \
+  mustafametesengul/webquest-mcp
 ```
 
 ## Disclaimer
