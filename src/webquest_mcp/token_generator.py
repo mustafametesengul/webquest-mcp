@@ -5,7 +5,7 @@ from pydantic import Field, PositiveInt, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class Settings(BaseSettings):
+class TokenGeneratorSettings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",
@@ -18,16 +18,16 @@ class Settings(BaseSettings):
     auth_subject: str = Field(default=...)
 
 
-def main() -> None:
-    settings = Settings()
+def generate_token(settings: TokenGeneratorSettings | None = None) -> None:
+    settings = settings or TokenGeneratorSettings()
     secret = settings.auth_secret.get_secret_value()
 
     delta = timedelta(days=settings.auth_expiration_days)
-    expiration_days = datetime.now(timezone.utc) + delta
+    expiration_date = datetime.now(timezone.utc) + delta
 
     payload = {
         "aud": settings.auth_audience,
-        "exp": expiration_days,
+        "exp": expiration_date,
         "sub": settings.auth_subject,
     }
 
@@ -37,4 +37,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    generate_token()

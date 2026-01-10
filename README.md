@@ -29,7 +29,7 @@ uv add webquest-mcp
 To start the WebQuest MCP server, run:
 
 ```bash
-webquest-mcp
+webquest-mcp run
 ```
 
 The server reads its configuration from environment variables (or a `.env` file loaded automatically). Available settings:
@@ -92,7 +92,7 @@ Run the published image:
 ```bash
 docker run --rm -p 8000:8000 --env-file .env \
   -e WEBQUEST_MCP_HOST=0.0.0.0 \
-  mustafametesengul/webquest-mcp
+  mustafametesengul/webquest-mcp run
 ```
 
 ## Disclaimer
