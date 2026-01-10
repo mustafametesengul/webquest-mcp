@@ -92,7 +92,7 @@ Run the published image:
 ```bash
 docker run --rm -p 8000:8000 --env-file .env \
   -e WEBQUEST_MCP_HOST=0.0.0.0 \
-  mustafametesengul/webquest-mcp webquest-mcp
+  mustafametesengul/webquest-mcp
 ```
 
 ## Disclaimer
