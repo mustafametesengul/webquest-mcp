@@ -10,7 +10,7 @@ dependencies = [
     "pydantic>=2.12.4",
     "pydantic-settings>=2.12.0",
     "pyjwt>=2.10.1",
-    "webquest>=0.12.6",
+    "webquest>=0.12.7",
 ]
 
 [project.urls]
