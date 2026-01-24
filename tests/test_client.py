@@ -1,6 +1,5 @@
 import asyncio
 
-import pytest
 from openai import AsyncOpenAI
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -14,7 +13,6 @@ class Settings(BaseSettings):
     test_server_url: str = Field(default=...)
 
 
-@pytest.mark.integration
 async def test_client() -> None:
     settings = Settings()
 
